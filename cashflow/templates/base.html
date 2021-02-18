@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+{% if user.is_authenticated %}
+    <nav>
+        <ul style="float: left;">
+            <li><a href="{% url 'main_url' %}">Main</a></li>
+            <li><a href="{% url 'send_money_url' %}">Send money</a></li>
+            <li><a href="{% url 'user_profile_url' %}">Profile</a></li>
+            <li><a href="{% url 'user_logout_url' %}">Logout</a></li>
+        </ul>
+        <ul style="float: right;">
+            <li>Hi, <strong>{{ user.username }}</strong></li>
+            <li>TIN: {{ user.tin }}</li>
+            <li>Balance: {{ user.balance }}₽</li>
+        </ul>
+    </nav>
+{% endif %}
+    <h1>{% block h1 %}{% endblock %}</h1>
+{% block content %}
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

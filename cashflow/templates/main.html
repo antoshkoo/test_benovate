@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}CashFlow{% endblock %}
+{% block h1 %}CashFlow{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2>Welcome, {{ user.username }}</h2>
+        <div>Balance: {{ user.balance }}₽</div>
+        <div>TIN: {{ user.tin }}</div>
+    {% else %}
+        <div><a href="{% url 'user_login_url' %}">Sign in</a></div>
+        <div><a href="{% url 'user_register_url' %}">Sign up</a></div>
+    {% endif %}
+{% endblock %}

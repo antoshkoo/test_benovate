@@ -1,0 +1,20 @@
+nav {
+    display: flow-root;
+    background: #e8e8e8;
+    border-bottom: 1px solid #ccc;
+}
+nav ul {
+    margin: 0;
+    padding-inline-start: 0;
+}
+nav li {
+    list-style-type: none;
+    display: table-cell;
+    padding: 10px;
+}
+select {
+    width: 500px;
+}
+form div {
+    margin: 10px 0 0;
+}

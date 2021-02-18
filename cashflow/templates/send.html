@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Send money{% endblock %}
+{% block h1 %}Send money{% endblock %}
+{% block content %}
+    <form action="." method="post">{% csrf_token %}
+        {% if user.is_staff %}
+            <div>
+                <label for="senders">
+                    <select name="sender" class="js-example-basic">
+                        {% for sender in senders_list %}
+                            <option value="{{ sender.tin }}">{{ sender.username }} ({{ sender.tin }} - {{ sender.balance }})</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+        {% endif %}
+        <div>
+            <label for="recipients">
+                <select name="recipients" class="js-example-basic-multiple" multiple="multiple">
+                    {% for recipient in recipients_list %}
+                        <option value="{{ recipient.tin }}">{{ recipient.username }} ({{ recipient.tin }} - {{ recipient.balance }})</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div>
+            <label for="sum">
+                <input type="text" name="sum" placeholder="Amount" pattern="\d+(\.\d{2})?">
+            </label>
+        </div>
+        <div><button type="submit">Confirm send</button></div>
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Sending successful{% endblock %}
+{% block h1 %}Sending successful{% endblock %}
+{% block content %}
+    {% for key, value in content.items %}
+        <div>{{ key }} - {{ value }}</div>
+    {% endfor %}
+    <div><a href="{% url 'send_money_url' %}">Return</a></div>
+{% endblock %}
