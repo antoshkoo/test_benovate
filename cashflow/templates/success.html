@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Sending successful{% endblock %}
-{% block h1 %}Sending successful{% endblock %}
+{% block title %}{{ content.status}}{% endblock %}
+{% block h1 %}{{ content.status}}{% endblock %}
 {% block content %}
-    {% for key, value in content.items %}
-        <div>{{ key }} - {{ value }}</div>
-    {% endfor %}
+    {% if content.success %}
+        <div>Sent for each: {{ content.personal_sum}}</div>
+        <div>Sent total: {{ content.total_sum}}</div>
+        <div>Your balance: {{ content.balance}}</div>
+        <div>Returned: {{ content.charge_back}}</div>
+    {% endif %}
     <div><a href="{% url 'send_money_url' %}">Return</a></div>
 {% endblock %}

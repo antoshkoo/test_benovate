@@ -23,9 +23,7 @@ def sending_calc(sender, amount, recipients):
         charge_back = Decimal(str(amount)) - total_sum
 
         CustomUser.objects.filter(tin__in=recipients).update(balance=F('balance') + personal_sum)
-
-        sender.balance = new_balance
-        sender.save()
+        CustomUser.objects.filter(tin=sender.tin).update(balance=new_balance)
 
         return {
             'status': 'Money was send',
@@ -33,4 +31,5 @@ def sending_calc(sender, amount, recipients):
             'total_sum': total_sum,
             'balance': new_balance,
             'charge_back': charge_back,
+            'success': True
         }
