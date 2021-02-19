@@ -8,4 +8,4 @@ class CustomUser(AbstractUser):
     balance = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Balance', default=0)
 
     def get_absolute_url(self):
-        return reverse('user_profile_url', args=[self.pk])
+        return reverse('user_profile_url')

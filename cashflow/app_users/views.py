@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, UpdateView
@@ -40,6 +40,8 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     form_class = CustomUserChangeForm
     template_name = 'users/profile.html'
 
+    def get_object(self):
+        return self.request.user
 
 
 class MoneySendView(LoginRequiredMixin, View):
