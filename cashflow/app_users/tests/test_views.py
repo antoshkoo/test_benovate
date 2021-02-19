@@ -52,14 +52,14 @@ class UserProfileViewTest(TestCase):
     fixtures = ['users_data.json']
 
     def test_user_not_logged_profile_page(self):
-        response = self.client.get(reverse('user_profile_url'))
-        next_url = reverse('user_login_url') + '?next=' + reverse('user_profile_url')
+        response = self.client.get(reverse('user_profile_url', kwargs={'pk': 1}))
+        next_url = reverse('user_login_url') + '?next=' + reverse('user_profile_url', kwargs={'pk': 1})
         self.assertRedirects(response, next_url, 302, target_status_code=200)
 
     def test_logged_user_profile_page(self):
         self.client.login(username=USER_DATA_BOSS['username'], password=USER_DATA_BOSS['password'])
 
-        response = self.client.get(reverse('user_profile_url'))
+        response = self.client.get(reverse('user_profile_url', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('form' in response.context)
         self.assertContains(response, 'Save changes</button>')

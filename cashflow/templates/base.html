@@ -13,7 +13,7 @@
         <ul style="float: left;">
             <li><a href="{% url 'main_url' %}">Main</a></li>
             <li><a href="{% url 'send_money_url' %}">Send money</a></li>
-            <li><a href="{% url 'user_profile_url' %}">Profile</a></li>
+            <li><a href="{% url 'user_profile_url' user.id %}">Profile</a></li>
             <li><a href="{% url 'user_logout_url' %}">Logout</a></li>
         </ul>
         <ul style="float: right;">

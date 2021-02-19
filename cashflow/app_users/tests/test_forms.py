@@ -40,7 +40,7 @@ class CustomUserChangeFormTest(TestCase):
         self.assertEqual(form.fields['email'].label, 'Email address')
 
     def test_user_change_form_post(self):
-        CustomUser.objects.create_user(username=USER_DATA['username'], password=USER_DATA['password1'])
+        user = CustomUser.objects.create_user(username=USER_DATA['username'], password=USER_DATA['password1'])
         self.client.login(username=USER_DATA['username'], password=USER_DATA['password1'])
-        response = self.client.post(reverse('user_profile_url'), USER_DATA)
-        self.assertRedirects(response, reverse('user_profile_url'), status_code=302, target_status_code=200)
+        response = self.client.post(reverse('user_profile_url', kwargs={'pk': user.pk}), USER_DATA)
+        self.assertRedirects(response, reverse('user_profile_url', kwargs={'pk': user.pk}), status_code=302, target_status_code=200)

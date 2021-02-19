@@ -42,7 +42,7 @@ class MoneySendLogicTest(TestCase):
             'sum': 1
         })
 
-        self.assertContains(response, f'Recipient not found -')
+        self.assertContains(response, 'One or more recipient not found')
 
     def test_money_send_user_no_balance(self):
         self.client.login(username=USER_DATA['username'], password=USER_DATA['password'])
